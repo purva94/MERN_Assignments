@@ -3,7 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Reaction tester</title>
+    <style>
+      #first {
+        background-color: aqua;
+        height: 140px;
+        width: 140px;
+        border: 5px solid black;
+      }
+      #second {
+        background-color: rgb(255, 132, 0);
+        height: 140px;
+        width: 140px;
+        border: 5px solid black;
+      }
+
+      #third {
+        background-color: rgb(136, 32, 32);
+        height: 140px;
+        width: 140px;
+        border: 5px solid black;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <h1>Test Your Reactions!</h1>
+    <p>Click on the boxes as quickly you can</p>
+    <div id="first"></div>
+    <div id="second"></div>
+    <div id="third"></div>
+
+    <script>
+      document.getElementById("first").onclick = function () {
+        document.getElementById("first").style.display = "none";
+      };
+    </script>
+  </body>
 </html>
