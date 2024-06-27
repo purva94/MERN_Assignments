@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation System</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 130%;
+      }
+      .wrapper {
+        width: 550px;
+        margin: 0 auto;
+      }
+      label {
+        width: 200px;
+        float: left;
+        position: relative;
+        top: 12px;
+      }
+      input {
+        width: 320px;
+        font-size: 25px;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px 5px 5px 5px;
+      }
+      .formelement {
+        margin-bottom: 10px;
+      }
+      #submit-button {
+        width: 130px;
+        margin-left: 200px;
+        margin-top: 10px;
+      }
+      #errors {
+        color: red;
+        font-size: 19px;
+      }
+      #success {
+        color: green;
+        font-size: 19px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="errors"></div>
+    <div id="success"></div>
+    <div class="wrapper">
+      <div class="formelement">
+        <label for="Email">Email</label>
+        <input type="text" id="Email" name="Email" />
+      </div>
+      <div class="formelement">
+        <label for="phoneno">Phone Number</label>
+        <input type="text" id="phoneno" name="phoneno" />
+      </div>
+      <div class="formelement">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" />
+      </div>
+      <div class="formelement">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" />
+        <input id="submit-button" type="button" value="Submit" />
+      </div>
+    </div>
+    <script>
+      function validate(email) {
+        var regex =
+          /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        return regex.test(email);
+      }
+
+      $("#submit-button").click(function () {
+        var errormessage = "";
+        var missingfield = "";
+
+        if ($("#Email").val() == "") {
+          missingfield += "<p>Email not filled</p>";
+        }
+        if ($("#phoneno").val() == "") {
+          missingfield += "<p>Phone number not filled</p>";
+        }
+        if ($("#password").val() == "") {
+          missingfield += "<p>Password not filled</p>";
+        }
+        if (validate($("#Email").val()) == false) {
+          errormessage += "<p>Invalid Email</p>";
+        }
+        if ($.isNumeric($("#phoneno").val()) == false) {
+          errormessage += "<p>Invalid Phone Number</p>";
+        }
+        if ($("#password").val() != $("#confirm-password").val()) {
+          errormessage += "<p>Passwords do not match</p>";
+        }
+        if (errormessage === "" && missingfield === "") {
+          $("#success").html("<p>You are registered</p>");
+        } else {
+          $("#errors").html(errormessage + missingfield);
+        }
+      });
+    </script>
+  </body>
+</html>
